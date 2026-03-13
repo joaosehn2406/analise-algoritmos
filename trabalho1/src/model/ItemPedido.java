@@ -3,7 +3,7 @@ package model;
 import java.util.List;
 
 public record ItemPedido(
-        List<Produto> produtos,
+        Produto produto,
         int quantidade
 ) {
 }
