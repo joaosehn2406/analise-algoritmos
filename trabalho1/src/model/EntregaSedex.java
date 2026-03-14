@@ -13,6 +13,6 @@ public class EntregaSedex implements ITipoEntrega {
             return 20.0;
         }
 
-        return 46.5 + (1.0 - peso % 0.1) * 1.5;
+        return 46.5 + Math.ceil((peso - 1.0) / 0.1) * 1.5;
     }
 }
