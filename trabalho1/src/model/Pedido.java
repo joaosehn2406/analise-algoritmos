@@ -1,5 +1,6 @@
 package model;
 
+import factory.TipoDeFreteFactory;
 import model.interfaces.ITipoEntrega;
 
 import java.time.LocalDate;
@@ -20,7 +21,7 @@ public class Pedido {
 
         this.id = id;
         this.produtos = new ArrayList<>();
-        this.tipoEntrega = EstrategiaFreteFactory.criar(tipo);
+        this.tipoEntrega = TipoDeFreteFactory.criar(tipo);
         this.dataPedido = dataPedido;
     }
 

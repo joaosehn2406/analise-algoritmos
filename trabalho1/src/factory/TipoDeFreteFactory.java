@@ -1,8 +1,12 @@
-package model;
+package factory;
 
+import model.EntregaEncomendaPac;
+import model.EntregaRetiradaEmLoja;
+import model.EntregaSedex;
+import model.TipoEntrega;
 import model.interfaces.ITipoEntrega;
 
-public class EstrategiaFreteFactory {
+public class TipoDeFreteFactory {
     
     public static ITipoEntrega criar(TipoEntrega tipo) {
         return switch (tipo) {
