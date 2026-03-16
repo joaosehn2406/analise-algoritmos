@@ -1,10 +1,12 @@
 package model;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import services.PedidoService;
 
 import java.time.LocalDate;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ModelTest {
 
@@ -14,7 +16,7 @@ public class ModelTest {
 
         double frete = entrega.calcularFrete(0.5);
 
-        Assert.assertEquals(10.0, frete, 0.001);
+        assertEquals(10.0, frete, 0.001);
     }
 
     @Test
@@ -23,7 +25,7 @@ public class ModelTest {
 
         double frete = entrega.calcularFrete(1.5);
 
-        Assert.assertEquals(15.0, frete, 0.001);
+        assertEquals(15.0, frete, 0.001);
     }
 
     @Test
@@ -32,7 +34,7 @@ public class ModelTest {
 
         double frete = entrega.calcularFrete(2.5);
 
-        Assert.assertEquals(0.0, frete, 0.001);
+        assertEquals(0.0, frete, 0.001);
     }
 
     @Test
@@ -41,7 +43,7 @@ public class ModelTest {
 
         double frete = entrega.calcularFrete(0.4);
 
-        Assert.assertEquals(12.5, frete, 0.001);
+        assertEquals(12.5, frete, 0.001);
     }
 
     @Test
@@ -50,7 +52,7 @@ public class ModelTest {
 
         double frete = entrega.calcularFrete(0.8);
 
-        Assert.assertEquals(20.0, frete, 0.001);
+        assertEquals(20.0, frete, 0.001);
     }
 
     @Test
@@ -59,7 +61,7 @@ public class ModelTest {
 
         double frete = entrega.calcularFrete(1.2);
 
-        Assert.assertEquals(49.5, frete, 0.001);
+        assertEquals(49.5, frete, 0.001);
     }
 
     @Test
@@ -68,36 +70,36 @@ public class ModelTest {
 
         double frete = entrega.calcularFrete(2.0);
 
-        Assert.assertEquals(0.0, frete, 0.001);
+        assertEquals(0.0, frete, 0.001);
     }
 
     @Test
     public void produtoDeveSerCriadoComValoresValidos() {
         Produto produto = new Produto("Livro", 59.90, 0.8);
 
-        Assert.assertEquals("Livro", produto.nome());
-        Assert.assertEquals(59.90, produto.valor(), 0.001);
-        Assert.assertEquals(0.8, produto.peso(), 0.001);
+        assertEquals("Livro", produto.nome());
+        assertEquals(59.90, produto.valor(), 0.001);
+        assertEquals(0.8, produto.peso(), 0.001);
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void produtoNaoDevePermitirNomeNulo() {
-        new Produto(null, 10.0, 1.0);
+        assertThrows(NullPointerException.class, () -> new Produto(null, 10.0, 1.0));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void produtoNaoDevePermitirNomeVazio() {
-        new Produto("   ", 10.0, 1.0);
+        assertThrows(IllegalArgumentException.class, () -> new Produto("   ", 10.0, 1.0));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void produtoNaoDevePermitirValorNegativo() {
-        new Produto("Livro", -1.0, 1.0);
+        assertThrows(IllegalArgumentException.class, () -> new Produto("Livro", -1.0, 1.0));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void produtoNaoDevePermitirPesoZeroOuNegativo() {
-        new Produto("Livro", 10.0, 0.0);
+        assertThrows(IllegalArgumentException.class, () -> new Produto("Livro", 10.0, 0.0));
     }
 
     @Test
@@ -110,7 +112,7 @@ public class ModelTest {
         pedidoService.adicionarProduto(pedido, p1);
         pedidoService.adicionarProduto(pedido, p2);
 
-        Assert.assertEquals(2.0, pedidoService.calcularPesoTotal(pedido), 0.001);
+        assertEquals(2.0, pedidoService.calcularPesoTotal(pedido), 0.001);
     }
 
     @Test
@@ -121,18 +123,18 @@ public class ModelTest {
 
         pedidoService.adicionarProduto(pedido, produto);
 
-        Assert.assertEquals(49.5, pedidoService.calcularFrete(pedido), 0.001);
+        assertEquals(49.5, pedidoService.calcularFrete(pedido), 0.001);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void pedidoNaoDevePermitirIdInvalido() {
-        new Pedido(0, TipoEntrega.SEDEX, LocalDate.now());
+        assertThrows(IllegalArgumentException.class, () -> new Pedido(0, TipoEntrega.SEDEX, LocalDate.now()));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void pedidoNaoDevePermitirProdutoNulo() {
         PedidoService pedidoService = new PedidoService();
         Pedido pedido = new Pedido(1, TipoEntrega.SEDEX, LocalDate.now());
-        pedidoService.adicionarProduto(pedido, null);
+        assertThrows(NullPointerException.class, () -> pedidoService.adicionarProduto(pedido, null));
     }
 }
