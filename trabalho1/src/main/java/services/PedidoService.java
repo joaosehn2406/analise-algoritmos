@@ -1,7 +1,7 @@
-package services;
+package main.java.services;
 
-import model.Pedido;
-import model.Produto;
+import main.java.model.Pedido;
+import main.java.model.Produto;
 
 import java.util.Objects;
 

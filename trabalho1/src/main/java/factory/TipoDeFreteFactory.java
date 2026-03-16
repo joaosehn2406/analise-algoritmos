@@ -1,10 +1,11 @@
-package factory;
+package main.java.factory;
 
-import model.EntregaEncomendaPac;
-import model.EntregaRetiradaEmLoja;
-import model.EntregaSedex;
-import model.TipoEntrega;
-import model.interfaces.ITipoEntrega;
+
+import main.java.model.EntregaEncomendaPac;
+import main.java.model.EntregaRetiradaEmLoja;
+import main.java.model.EntregaSedex;
+import main.java.model.enums.TipoEntrega;
+import main.java.model.interfaces.ITipoEntrega;
 
 public class TipoDeFreteFactory {
     

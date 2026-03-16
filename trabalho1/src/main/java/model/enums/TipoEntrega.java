@@ -1,4 +1,4 @@
-package model;
+package main.java.model.enums;
 
 public enum TipoEntrega {
     ENCOMENDA_PAC,

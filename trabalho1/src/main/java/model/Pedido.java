@@ -1,7 +1,8 @@
-package model;
+package main.java.model;
 
-import factory.TipoDeFreteFactory;
-import model.interfaces.ITipoEntrega;
+import main.java.factory.TipoDeFreteFactory;
+import main.java.model.enums.TipoEntrega;
+import main.java.model.interfaces.ITipoEntrega;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

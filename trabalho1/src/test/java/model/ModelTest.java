@@ -1,7 +1,9 @@
-package model;
+package test.java.model;
 
+import main.java.model.*;
+import main.java.model.enums.TipoEntrega;
+import main.java.services.PedidoService;
 import org.junit.jupiter.api.Test;
-import services.PedidoService;
 
 import java.time.LocalDate;
 

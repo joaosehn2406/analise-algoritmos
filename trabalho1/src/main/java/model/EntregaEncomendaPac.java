@@ -1,6 +1,6 @@
-package model;
+package main.java.model;
 
-import model.interfaces.ITipoEntrega;
+import main.java.model.interfaces.ITipoEntrega;
 
 public class EntregaEncomendaPac implements ITipoEntrega {
     private static final double PESO_LIMITE_1 = 1.0;

@@ -1,6 +1,7 @@
-package model;
+package main.java.model;
 
-import model.interfaces.ITipoEntrega;
+
+import main.java.model.interfaces.ITipoEntrega;
 
 public class EntregaSedex implements ITipoEntrega {
     private static final double PESO_LIMITE_500G = 0.5;
