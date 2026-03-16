@@ -6,7 +6,6 @@ import model.interfaces.ITipoEntrega;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Pedido {
     private final int id;
@@ -18,6 +17,12 @@ public class Pedido {
         if (id <= 0) {
             throw new IllegalArgumentException("id deve ser maior que zero");
         }
+        if (tipo == null) {
+            throw new NullPointerException("tipo de entrega não pode ser nulo");
+        }
+        if (dataPedido == null) {
+            throw new NullPointerException("data do pedido não pode ser nula");
+        }
 
         this.id = id;
         this.produtos = new ArrayList<>();
@@ -25,20 +30,19 @@ public class Pedido {
         this.dataPedido = dataPedido;
     }
 
-    public void adicionarProduto(Produto produto) {
-        Objects.requireNonNull(produto, "produto não pode ser nulo");
-        this.produtos.add(produto);
+    public int id() {
+        return id;
     }
 
-    public double calcularPesoTotal() {
-        double pesoTotal = 0.0;
-        for (Produto produto : produtos) {
-            pesoTotal += produto.peso();
-        }
-        return pesoTotal;
+    public List<Produto> produtos() {
+        return produtos;
     }
 
-    public double calcularFrete() {
-        return tipoEntrega.calcularFrete(calcularPesoTotal());
+    public ITipoEntrega tipoEntrega() {
+        return tipoEntrega;
+    }
+
+    public LocalDate dataPedido() {
+        return dataPedido;
     }
 }

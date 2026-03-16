@@ -2,6 +2,7 @@ package model;
 
 import org.junit.Assert;
 import org.junit.Test;
+import services.PedidoService;
 
 import java.time.LocalDate;
 
@@ -101,24 +102,26 @@ public class ModelTest {
 
     @Test
     public void pedidoDeveAdicionarProdutoECalcularPesoTotal() {
+        PedidoService pedidoService = new PedidoService();
         Pedido pedido = new Pedido(1, TipoEntrega.RETIRADA_LOJA, LocalDate.now());
         Produto p1 = new Produto("Livro A", 50.0, 0.7);
         Produto p2 = new Produto("Livro B", 70.0, 1.3);
 
-        pedido.adicionarProduto(p1);
-        pedido.adicionarProduto(p2);
+        pedidoService.adicionarProduto(pedido, p1);
+        pedidoService.adicionarProduto(pedido, p2);
 
-        Assert.assertEquals(2.0, pedido.calcularPesoTotal(), 0.001);
+        Assert.assertEquals(2.0, pedidoService.calcularPesoTotal(pedido), 0.001);
     }
 
     @Test
     public void pedidoDeveCalcularFreteComEstrategiaSedex() {
+        PedidoService pedidoService = new PedidoService();
         Pedido pedido = new Pedido(1, TipoEntrega.SEDEX, LocalDate.now());
         Produto produto = new Produto("Livro", 80.0, 1.2);
 
-        pedido.adicionarProduto(produto);
+        pedidoService.adicionarProduto(pedido, produto);
 
-        Assert.assertEquals(49.5, pedido.calcularFrete(), 0.001);
+        Assert.assertEquals(49.5, pedidoService.calcularFrete(pedido), 0.001);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -128,7 +131,8 @@ public class ModelTest {
 
     @Test(expected = NullPointerException.class)
     public void pedidoNaoDevePermitirProdutoNulo() {
+        PedidoService pedidoService = new PedidoService();
         Pedido pedido = new Pedido(1, TipoEntrega.SEDEX, LocalDate.now());
-        pedido.adicionarProduto(null);
+        pedidoService.adicionarProduto(pedido, null);
     }
 }
