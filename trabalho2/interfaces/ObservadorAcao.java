@@ -1,4 +1,7 @@
-package models;
+package interfaces;
+
+import models.Acao;
+import models.Dinheiro;
 
 public interface ObservadorAcao {
 

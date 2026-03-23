@@ -1,5 +1,7 @@
 package models;
 
+import interfaces.ObservadorAcao;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
