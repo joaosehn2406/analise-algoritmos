@@ -15,11 +15,7 @@ public final class Dinheiro {
         this.quantia = quantia;
     }
 
-    public boolean possuiMesmoValor(Dinheiro outroValor) {
-        return outroValor != null && quantia.compareTo(outroValor.quantia) == 0;
-    }
-
-    public BigDecimal gerQuantia() {
+    public BigDecimal getQuantia() {
         return quantia;
     }
 
