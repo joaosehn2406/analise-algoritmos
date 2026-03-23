@@ -1,11 +1,11 @@
 package tests;
 
-import enums.TipoOrdem;
-import interfaces.ObservadorAcao;
-import models.Acao;
-import models.Dinheiro;
-import models.Investidor;
-import models.Ordem;
+import main.enums.TipoOrdem;
+import main.interfaces.ObservadorAcao;
+import main.models.Acao;
+import main.models.Dinheiro;
+import main.models.Investidor;
+import main.models.Ordem;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -85,7 +85,7 @@ class ProjetoCompletoTest {
         assertEquals(0, acao.getOrdens().size());
         assertEquals(1, comprador.getNotificacoesRecebidas().size());
         assertEquals(1, vendedor.getNotificacoesRecebidas().size());
-        assertTrue(comprador.getNotificacoesRecebidas().get(0).contains("VALE3"));
+        assertTrue(comprador.getNotificacoesRecebidas().getFirst().contains("VALE3"));
     }
 
     @Test

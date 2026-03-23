@@ -1,7 +1,7 @@
-package interfaces;
+package main.interfaces;
 
-import models.Acao;
-import models.Dinheiro;
+import main.models.Acao;
+import main.models.Dinheiro;
 
 public interface ObservadorAcao {
 

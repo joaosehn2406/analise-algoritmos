@@ -1,6 +1,6 @@
-package models;
+package main.models;
 
-import interfaces.ObservadorAcao;
+import main.interfaces.ObservadorAcao;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,12 +1,12 @@
-package models;
+package main.models;
 
-import enums.TipoOrdem;
+import main.enums.TipoOrdem;
 
 public class Ordem {
 
-    private Investidor investidor;
-    private TipoOrdem tipoOrdem;
-    private Dinheiro valor;
+    private final Investidor investidor;
+    private final TipoOrdem tipoOrdem;
+    private final Dinheiro valor;
 
     public Ordem(Investidor investidor, TipoOrdem tipoOrdem, Dinheiro valor) {
 

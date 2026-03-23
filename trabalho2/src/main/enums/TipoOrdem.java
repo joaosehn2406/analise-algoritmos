@@ -1,6 +1,6 @@
-package enums;
+package main.enums;
 
 public enum TipoOrdem {
     VENDA,
-    COMPRA;
+    COMPRA
 }

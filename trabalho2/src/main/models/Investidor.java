@@ -1,7 +1,7 @@
-package models;
+package main.models;
 
-import enums.TipoOrdem;
-import interfaces.ObservadorAcao;
+import main.enums.TipoOrdem;
+import main.interfaces.ObservadorAcao;
 
 import java.util.ArrayList;
 import java.util.Collections;
