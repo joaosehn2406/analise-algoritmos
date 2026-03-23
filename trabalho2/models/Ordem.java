@@ -14,6 +14,10 @@ public class Ordem {
             throw new NullPointerException("Investidor não pode estar nulo");
         }
 
+        if (tipoOrdem == null) {
+            throw new NullPointerException("Tipo da ordem não pode estar nulo");
+        }
+
         if (valor == null) {
             throw new NullPointerException("O valor não pode estar nulo e precisa ser maior que 0");
         }
@@ -33,6 +37,18 @@ public class Ordem {
 
     public boolean possuiMesmoValor(Dinheiro outroValor) {
         return outroValor != null && valor.getQuantia().compareTo(outroValor.getQuantia()) == 0;
+    }
+
+    public Investidor getInvestidor() {
+        return investidor;
+    }
+
+    public TipoOrdem getTipoOrdem() {
+        return tipoOrdem;
+    }
+
+    public Dinheiro getValor() {
+        return valor;
     }
 
 }
