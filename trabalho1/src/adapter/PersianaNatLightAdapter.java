@@ -18,7 +18,10 @@ public class PersianaNatLightAdapter implements IPersiana {
     @Override
     public void abrir() {
         try {
-            persianaNatLight.abrirPalheta();
+            if (!persianaNatLight.estaPalhetaAberta()) {
+                persianaNatLight.abrirPalheta();
+            }
+
             persianaNatLight.subirPalheta();
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -28,8 +31,13 @@ public class PersianaNatLightAdapter implements IPersiana {
     @Override
     public void fechar() {
         try {
-            persianaNatLight.descerPalheta();
-            persianaNatLight.fecharPalheta();
+            if (persianaNatLight.estaPalhetaErguida()) {
+                persianaNatLight.descerPalheta();
+            }
+
+            if (persianaNatLight.estaPalhetaAberta()) {
+                persianaNatLight.fecharPalheta();
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

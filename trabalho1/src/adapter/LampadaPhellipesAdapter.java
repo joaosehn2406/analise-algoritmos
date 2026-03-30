@@ -18,11 +18,16 @@ public class LampadaPhellipesAdapter implements ILampada {
 
     @Override
     public void ligar() {
-        lampadaPhellipes.setIntensidade(100);
+        if (lampadaPhellipes.getIntensidade() == 0) {
+
+            lampadaPhellipes.setIntensidade(100);
+        }
     }
 
     @Override
     public void desligar() {
-        lampadaPhellipes.setIntensidade(0);
+        if (lampadaPhellipes.getIntensidade() == 100) {
+            lampadaPhellipes.setIntensidade(0);
+        }
     }
 }

@@ -9,7 +9,7 @@ public class LampadaShoyuMiAdapter implements ILampada {
 
     public LampadaShoyuMiAdapter(LampadaShoyuMi lampadaShoyuMi) {
 
-         if (lampadaShoyuMi == null) {
+        if (lampadaShoyuMi == null) {
             throw new IllegalArgumentException("Não pode ser nulo.");
         }
 
@@ -18,11 +18,15 @@ public class LampadaShoyuMiAdapter implements ILampada {
 
     @Override
     public void ligar() {
-        lampadaShoyuMi.ligar();
+        if (!lampadaShoyuMi.estaLigada()) {
+            lampadaShoyuMi.ligar();
+        }
     }
 
     @Override
     public void desligar() {
-        lampadaShoyuMi.desligar();
+        if (lampadaShoyuMi.estaLigada()) {
+            lampadaShoyuMi.desligar();
+        }
     }
 }

@@ -17,13 +17,17 @@ public class PersianaSolariusAdapter implements IPersiana {
 
     @Override
     public void abrir() {
-        persianaSolarius.subirPersiana();
+        if (!persianaSolarius.estaAberta()) {
+            persianaSolarius.subirPersiana();
+        }
     }
 
     @Override
     public void fechar() {
         try {
-            persianaSolarius.descerPersiana();
+            if (persianaSolarius.estaAberta()) {
+                persianaSolarius.descerPersiana();
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
