@@ -1,0 +1,34 @@
+package adapter;
+
+import br.furb.analise.algoritmos.LampadaShoyuMi;
+import interfaces.ILampada;
+
+public class LampadaShoyuMiAdapter implements ILampada {
+
+    private final LampadaShoyuMi lampadaShoyuMi;
+
+    public LampadaShoyuMiAdapter(LampadaShoyuMi lampadaShoyuMi) {
+
+         if (lampadaShoyuMi == null) {
+            throw new IllegalArgumentException("Não pode ser nulo.");
+        }
+
+        this.lampadaShoyuMi = lampadaShoyuMi;
+    }
+
+    @Override
+    public void ligar() {
+        lampadaShoyuMi.ligar();
+    }
+
+    @Override
+    public void desligar() {
+        lampadaShoyuMi.desligar();
+    }
+
+    @Override
+    public boolean estaLigada() {
+        return lampadaShoyuMi.estaLigada();
+    }
+
+}
