@@ -24,12 +24,8 @@ public class PersianaSolariusAdapter implements IPersiana {
 
     @Override
     public void fechar() {
-        try {
-            if (persianaSolarius.estaAberta()) {
-                persianaSolarius.descerPersiana();
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        if (persianaSolarius.estaAberta()) {
+            persianaSolarius.descerPersiana();
         }
     }
 }

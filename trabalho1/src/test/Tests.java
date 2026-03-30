@@ -1,10 +1,15 @@
 package test;
 
+import adapter.ArCondicionadoGellaKazaAdapter;
 import adapter.ArCondicionadoVentoBaumAdapter;
 import adapter.LampadaPhellipesAdapter;
 import adapter.LampadaShoyuMiAdapter;
 import adapter.PersianaNatLightAdapter;
 import adapter.PersianaSolariusAdapter;
+import facade.AutomacaoResidencial;
+import interfaces.IArCondicionado;
+import interfaces.ILampada;
+import interfaces.IPersiana;
 import model.ArCondicionadoGellaKaza;
 import model.ArCondicionadoVentoBaumn;
 import model.LampadaPhellipes;
@@ -12,6 +17,8 @@ import model.LampadaShoyuMi;
 import model.PersianaNatLight;
 import model.PersianaSolarius;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -250,5 +257,129 @@ public class Tests {
     @Test
     void persianaSolariusAdapter_DeveLancarExcecaoSeModeloForNulo() {
         assertThrows(IllegalArgumentException.class, () -> new PersianaSolariusAdapter(null));
+    }
+
+
+    @Test
+    void arCondicionadoGellaKazaAdapter_DeveLancarExcecaoSeModeloForNulo() {
+        assertThrows(IllegalArgumentException.class, () -> new ArCondicionadoGellaKazaAdapter(null));
+    }
+
+    @Test
+    void arCondicionadoGellaKazaAdapter_DeveLigarEDesligar() {
+        ArCondicionadoGellaKaza model = new ArCondicionadoGellaKaza();
+        ArCondicionadoGellaKazaAdapter adapter = new ArCondicionadoGellaKazaAdapter(model);
+
+        adapter.ligar();
+        assertTrue(model.estaLigado());
+
+        adapter.desligar();
+        assertFalse(model.estaLigado());
+    }
+
+    @Test
+    void arCondicionadoGellaKazaAdapter_DeveAumentarEDiminuirTemperatura() {
+        ArCondicionadoGellaKaza model = new ArCondicionadoGellaKaza();
+        ArCondicionadoGellaKazaAdapter adapter = new ArCondicionadoGellaKazaAdapter(model);
+
+        int tempInicial = model.getTemperatura(); 
+        adapter.aumentarTemperatura();
+        assertEquals(tempInicial + 1, model.getTemperatura());
+
+        adapter.diminuirTemperatura();
+        assertEquals(tempInicial, model.getTemperatura());
+    }
+
+    @Test
+    void arCondicionadoGellaKazaAdapter_DeveDefinirTemperaturaParaCima() {
+        ArCondicionadoGellaKaza model = new ArCondicionadoGellaKaza();
+        ArCondicionadoGellaKazaAdapter adapter = new ArCondicionadoGellaKazaAdapter(model);
+
+        adapter.definirTemperatura(32);
+        assertEquals(32, model.getTemperatura());
+    }
+
+    @Test
+    void arCondicionadoGellaKazaAdapter_DeveDefinirTemperaturaParaBaixo() {
+        ArCondicionadoGellaKaza model = new ArCondicionadoGellaKaza();
+        ArCondicionadoGellaKazaAdapter adapter = new ArCondicionadoGellaKazaAdapter(model);
+
+        adapter.definirTemperatura(20);
+        assertEquals(20, model.getTemperatura());
+    }
+
+
+    @Test
+    void automacaoResidencial_ModoSonoDeveDesligarTudo() {
+        LampadaShoyuMi lampadaShoyuMi = new LampadaShoyuMi();
+        LampadaPhellipes lampadaPhellipes = new LampadaPhellipes();
+        PersianaSolarius persianaSolarius = new PersianaSolarius();
+        PersianaNatLight persianaNatLight = new PersianaNatLight();
+        ArCondicionadoVentoBaumn arVento = new ArCondicionadoVentoBaumn();
+        ArCondicionadoGellaKaza arGella = new ArCondicionadoGellaKaza();
+
+        lampadaShoyuMi.ligar();
+        lampadaPhellipes.setIntensidade(100);
+        arVento.ligar();
+        arGella.ativar();
+
+        List<ILampada> lampadas = List.of(
+                new LampadaShoyuMiAdapter(lampadaShoyuMi),
+                new LampadaPhellipesAdapter(lampadaPhellipes)
+        );
+        List<IPersiana> persianas = List.of(
+                new PersianaSolariusAdapter(persianaSolarius),
+                new PersianaNatLightAdapter(persianaNatLight)
+        );
+        List<IArCondicionado> ars = List.of(
+                new ArCondicionadoVentoBaumAdapter(arVento),
+                new ArCondicionadoGellaKazaAdapter(arGella)
+        );
+
+        AutomacaoResidencial automacao = new AutomacaoResidencial(lampadas, persianas, ars);
+        automacao.ativarModoSono();
+
+        assertFalse(lampadaShoyuMi.estaLigada());
+        assertEquals(0, lampadaPhellipes.getIntensidade());
+        assertFalse(persianaSolarius.estaAberta());
+        assertFalse(persianaNatLight.estaPalhetaErguida());
+        assertFalse(arVento.estaLigado());
+        assertFalse(arGella.estaLigado());
+    }
+
+    @Test
+    void automacaoResidencial_ModoTrabalhoDeveLigarTudoComTemperatura25() {
+        LampadaShoyuMi lampadaShoyuMi = new LampadaShoyuMi();
+        LampadaPhellipes lampadaPhellipes = new LampadaPhellipes();
+        PersianaSolarius persianaSolarius = new PersianaSolarius();
+        PersianaNatLight persianaNatLight = new PersianaNatLight();
+        ArCondicionadoVentoBaumn arVento = new ArCondicionadoVentoBaumn();
+        ArCondicionadoGellaKaza arGella = new ArCondicionadoGellaKaza();
+
+        List<ILampada> lampadas = List.of(
+                new LampadaShoyuMiAdapter(lampadaShoyuMi),
+                new LampadaPhellipesAdapter(lampadaPhellipes)
+        );
+        List<IPersiana> persianas = List.of(
+                new PersianaSolariusAdapter(persianaSolarius),
+                new PersianaNatLightAdapter(persianaNatLight)
+        );
+        List<IArCondicionado> ars = List.of(
+                new ArCondicionadoVentoBaumAdapter(arVento),
+                new ArCondicionadoGellaKazaAdapter(arGella)
+        );
+
+        AutomacaoResidencial automacao = new AutomacaoResidencial(lampadas, persianas, ars);
+        automacao.ativarModoTrabalho();
+
+        assertTrue(lampadaShoyuMi.estaLigada());
+        assertEquals(100, lampadaPhellipes.getIntensidade());
+        assertTrue(persianaSolarius.estaAberta());
+        assertTrue(persianaNatLight.estaPalhetaAberta());
+        assertTrue(persianaNatLight.estaPalhetaErguida());
+        assertTrue(arVento.estaLigado());
+        assertEquals(25, arVento.getTemperatura());
+        assertTrue(arGella.estaLigado());
+        assertEquals(25, arGella.getTemperatura());
     }
 }
