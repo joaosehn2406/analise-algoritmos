@@ -28,9 +28,4 @@ public class PersianaSolariusAdapter implements IPersiana {
             throw new RuntimeException(e);
         }
     }
-
-    @Override
-    public boolean estaAberta() {
-        return persianaSolarius.estaAberta();
-    }
 }

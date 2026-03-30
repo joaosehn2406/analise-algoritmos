@@ -34,9 +34,4 @@ public class PersianaNatLightAdapter implements IPersiana {
             throw new RuntimeException(e);
         }
     }
-
-    @Override
-    public boolean estaAberta() {
-        return persianaNatLight.estaPalhetaErguida();
-    }
 }

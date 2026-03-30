@@ -25,10 +25,4 @@ public class LampadaPhellipesAdapter implements ILampada {
     public void desligar() {
         lampadaPhellipes.setIntensidade(0);
     }
-
-    @Override
-    public boolean estaLigada() {
-        return lampadaPhellipes.getIntensidade() > 0;
-    }
-
 }

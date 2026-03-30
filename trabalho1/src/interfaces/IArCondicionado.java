@@ -6,6 +6,4 @@ public interface IArCondicionado {
     void aumentarTemperatura();
     void diminuirTemperatura();
     void definirTemperatura(int temperatura);
-    int getTemperatura();
-    boolean estaLigado();
 }

@@ -25,10 +25,4 @@ public class LampadaShoyuMiAdapter implements ILampada {
     public void desligar() {
         lampadaShoyuMi.desligar();
     }
-
-    @Override
-    public boolean estaLigada() {
-        return lampadaShoyuMi.estaLigada();
-    }
-
 }
