@@ -22,7 +22,11 @@ public class PersianaSolariusAdapter implements IPersiana {
 
     @Override
     public void fechar() {
-        persianaSolarius.abaixarPersiana();
+        try {
+            persianaSolarius.descerPersiana();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

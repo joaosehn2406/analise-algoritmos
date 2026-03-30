@@ -17,14 +17,22 @@ public class PersianaNatLightAdapter implements IPersiana {
 
     @Override
     public void abrir() {
-        persianaNatLight.abrirPalhetas();
-        persianaNatLight.subirPalhetas();
+        try {
+            persianaNatLight.abrirPalheta();
+            persianaNatLight.subirPalheta();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void fechar() {
-        persianaNatLight.descerPalhetas();
-        persianaNatLight.fecharPalhetas();
+        try {
+            persianaNatLight.descerPalheta();
+            persianaNatLight.fecharPalheta();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
