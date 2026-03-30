@@ -1,7 +1,7 @@
 package adapter;
 
-import br.furb.analise.algoritmos.ArCondicionadoGellaKaza;
 import interfaces.IArCondicionado;
+import model.ArCondicionadoGellaKaza;
 
 public class ArCondicionadoGellaKazaAdapter implements IArCondicionado {
 
@@ -18,32 +18,53 @@ public class ArCondicionadoGellaKazaAdapter implements IArCondicionado {
     @Override
     public void ligar() {
         if (!arCondicionadoGellaKaza.estaLigado()) {
-            
+            arCondicionadoGellaKaza.ativar();
         }
     }
 
     @Override
     public void desligar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'desligar'");
+        if (arCondicionadoGellaKaza.estaLigado()) {
+            arCondicionadoGellaKaza.desativar();
+        }
     }
 
     @Override
     public void aumentarTemperatura() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'aumentarTemperatura'");
+        if (arCondicionadoGellaKaza.estaLigado()) {
+            arCondicionadoGellaKaza.aumentarTemperatura();
+        }
     }
 
     @Override
     public void diminuirTemperatura() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'diminuirTemperatura'");
+        if (arCondicionadoGellaKaza.estaLigado()) {
+            arCondicionadoGellaKaza.diminuirTemperatura();
+        }
     }
 
     @Override
     public void definirTemperatura(int temperatura) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'definirTemperatura'");
+
+        if (temperatura < arCondicionadoGellaKaza.getTemperatura()) {
+            diminuiTemperaturaAteIndicada(temperatura);
+        } else {
+            aumentaTemperaturaAteIndicada(temperatura);
+        }
+
     }
 
+    public void diminuiTemperaturaAteIndicada(int temperatura) {
+        for (int temperaturaAtual = arCondicionadoGellaKaza
+                .getTemperatura(); temperaturaAtual >= temperatura; temperaturaAtual--) {
+            arCondicionadoGellaKaza.diminuirTemperatura();
+        }
+    }
+
+    public void aumentaTemperaturaAteIndicada(int temperatura) {
+        for (int temperaturaAtual = arCondicionadoGellaKaza
+                .getTemperatura(); temperaturaAtual <= temperatura; temperaturaAtual++) {
+            arCondicionadoGellaKaza.aumentarTemperatura();
+        }
+    }
 }

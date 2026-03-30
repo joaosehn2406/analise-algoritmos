@@ -1,6 +1,6 @@
 package adapter;
 
-import br.furb.analise.algoritmos.PersianaNatLight;
+import model.PersianaNatLight;
 import interfaces.IPersiana;
 
 public class PersianaNatLightAdapter implements IPersiana {

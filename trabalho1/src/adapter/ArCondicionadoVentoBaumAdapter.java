@@ -1,7 +1,7 @@
 package adapter;
 
-import br.furb.analise.algoritmos.ArCondicionadoVentoBaumn;
 import interfaces.IArCondicionado;
+import model.ArCondicionadoVentoBaumn;
 
 public class ArCondicionadoVentoBaumAdapter implements IArCondicionado {
 
@@ -18,31 +18,31 @@ public class ArCondicionadoVentoBaumAdapter implements IArCondicionado {
 
     @Override
     public void ligar() {
-        if (arCondicionadoVentoBaumn.)
+        if (!arCondicionadoVentoBaumn.estaLigado()) {
+            arCondicionadoVentoBaumn.ligar();
+        }
     }
 
     @Override
     public void desligar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'desligar'");
+        if (arCondicionadoVentoBaumn.estaLigado()) {
+            arCondicionadoVentoBaumn.desligar();
+        }
     }
 
     @Override
     public void aumentarTemperatura() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'aumentarTemperatura'");
+        arCondicionadoVentoBaumn.definirTemperatura(arCondicionadoVentoBaumn.getTemperatura() + 1);
     }
 
     @Override
     public void diminuirTemperatura() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'diminuirTemperatura'");
+        arCondicionadoVentoBaumn.definirTemperatura(arCondicionadoVentoBaumn.getTemperatura() - 1);
     }
 
     @Override
     public void definirTemperatura(int temperatura) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'definirTemperatura'");
+        arCondicionadoVentoBaumn.definirTemperatura(temperatura);
     }
 
 }

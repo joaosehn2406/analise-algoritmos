@@ -1,6 +1,6 @@
 package adapter;
 
-import br.furb.analise.algoritmos.LampadaShoyuMi;
+import model.LampadaShoyuMi;
 import interfaces.ILampada;
 
 public class LampadaShoyuMiAdapter implements ILampada {

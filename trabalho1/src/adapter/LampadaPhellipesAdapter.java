@@ -1,7 +1,7 @@
 package adapter;
 
-import br.furb.analise.algoritmos.LampadaPhellipes;
 import interfaces.ILampada;
+import model.LampadaPhellipes;
 
 public class LampadaPhellipesAdapter implements ILampada {
 

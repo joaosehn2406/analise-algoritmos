@@ -1,6 +1,6 @@
 package adapter;
 
-import br.furb.analise.algoritmos.PersianaSolarius;
+import model.PersianaSolarius;
 import interfaces.IPersiana;
 
 public class PersianaSolariusAdapter implements IPersiana {
