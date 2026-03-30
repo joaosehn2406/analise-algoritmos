@@ -1,9 +1,0 @@
-{
-    "java.project.sourcePaths": [
-        "trabalho1\\.idea",
-        "trabalho1\\src"
-    ],
-    "java.project.referencedLibraries": [
-        "trabalho1\\lib\\LibDispositivosIot-1.0.jar"
-    ]
-}
