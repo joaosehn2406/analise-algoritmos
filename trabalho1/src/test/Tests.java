@@ -283,6 +283,7 @@ public class Tests {
         ArCondicionadoGellaKazaAdapter adapter = new ArCondicionadoGellaKazaAdapter(model);
 
         int tempInicial = model.getTemperatura(); 
+        adapter.ligar();
         adapter.aumentarTemperatura();
         assertEquals(tempInicial + 1, model.getTemperatura());
 

@@ -9,7 +9,7 @@ public class ArCondicionadoGellaKazaAdapter implements IArCondicionado {
 
     public ArCondicionadoGellaKazaAdapter(ArCondicionadoGellaKaza arCondicionadoGellaKaza) {
         if (arCondicionadoGellaKaza == null) {
-            throw new IllegalArgumentException("Não pode ser nulo.");
+            throw new IllegalArgumentException("NÃ£o pode ser nulo.");
         }
 
         this.arCondicionadoGellaKaza = arCondicionadoGellaKaza;
@@ -56,14 +56,14 @@ public class ArCondicionadoGellaKazaAdapter implements IArCondicionado {
 
     public void diminuiTemperaturaAteIndicada(int temperatura) {
         for (int temperaturaAtual = arCondicionadoGellaKaza
-                .getTemperatura(); temperaturaAtual >= temperatura; temperaturaAtual--) {
+                .getTemperatura(); temperaturaAtual > temperatura; temperaturaAtual--) {
             arCondicionadoGellaKaza.diminuirTemperatura();
         }
     }
 
     public void aumentaTemperaturaAteIndicada(int temperatura) {
         for (int temperaturaAtual = arCondicionadoGellaKaza
-                .getTemperatura(); temperaturaAtual <= temperatura; temperaturaAtual++) {
+                .getTemperatura(); temperaturaAtual < temperatura; temperaturaAtual++) {
             arCondicionadoGellaKaza.aumentarTemperatura();
         }
     }
